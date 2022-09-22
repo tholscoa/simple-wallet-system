@@ -18,9 +18,14 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
+        'email_verified',
+        'email_verified_at',
         'password',
+        'pin',
+        'status'
     ];
 
     /**
@@ -29,6 +34,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
+        'id',
         'password',
         'remember_token',
     ];
@@ -41,4 +47,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $appends = [
+        'wallet_code', 'balance'
+    ];
+
+    public function wallet(){
+        return $this->hasOne(Wallet::class);
+    }
+
+    public function balance(){
+        return $this->hasOne(Wallet::class);
+    }
+
+    public function getWalletAttribute(){
+        return $this->wallet()->first() ? $this->wallet()->first()->code : null;
+     }
+
+     public function getBalanceAttribute(){
+        return $this->wallet()->first() ? $this->wallet()->first()->balance : null;
+     }
 }

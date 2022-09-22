@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\TransactionsController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\WalletController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('user/register', [UserController::class, 'register']);
+Route::post('verify/email', [UserController::class, 'verifyEmail']);
+Route::post('login', [UserController::class, 'login']);
+Route::post('transfer', [TransactionsController::class, 'transfer']);
+Route::post('wallet/create', [WalletController::class, 'create']);

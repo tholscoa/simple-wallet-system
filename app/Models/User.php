@@ -37,6 +37,7 @@ class User extends Authenticatable
         'id',
         'password',
         'remember_token',
+        "pin"
     ];
 
     /**
@@ -49,10 +50,10 @@ class User extends Authenticatable
     ];
 
     protected $appends = [
-        'wallet_code', 'balance'
+        'walletcode', 'balance'
     ];
 
-    public function wallet(){
+    public function walletcode(){
         return $this->hasOne(Wallet::class);
     }
 
@@ -60,11 +61,11 @@ class User extends Authenticatable
         return $this->hasOne(Wallet::class);
     }
 
-    public function getWalletAttribute(){
-        return $this->wallet()->first() ? $this->wallet()->first()->code : null;
+    public function getWalletcodeAttribute(){
+        return $this->walletcode()->first() ? $this->walletcode()->first()->code : null;
      }
 
      public function getBalanceAttribute(){
-        return $this->wallet()->first() ? $this->wallet()->first()->balance : null;
+        return $this->balance()->first() ? $this->balance()->first()->balance : null;
      }
 }

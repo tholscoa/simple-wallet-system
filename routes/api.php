@@ -20,5 +20,6 @@ use Illuminate\Support\Facades\Route;
 Route::post('user/register', [UserController::class, 'register']);
 Route::post('verify/email', [UserController::class, 'verifyEmail']);
 Route::post('login', [UserController::class, 'login']);
-Route::post('transfer', [TransactionsController::class, 'transfer']);
 Route::post('wallet/create', [WalletController::class, 'create']);
+Route::post('transfer', [TransactionsController::class, 'transfer']);
+Route::post('transaction/history', [TransactionsController::class, 'myHistory']);

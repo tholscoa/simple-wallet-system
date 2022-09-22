@@ -36,6 +36,7 @@ class UserService
             $user->email = $email;
             $user->password = $encrypted_password;
             $user->pin = $encrypted_pin;
+            $user->status = true;
             $user->save();              
         } catch (\Exception $e) {
             //if saving failed, log error and return error

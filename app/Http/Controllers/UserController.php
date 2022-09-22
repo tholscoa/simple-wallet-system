@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Password;
+use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -19,7 +19,7 @@ class UserController extends Controller
             'first_name' => 'required|string',
             'last_name' => 'required|string',
             'email' => 'required|email',
-            'pin' => 'required|integer|min:4|max:4',
+            'pin' => 'required|integer',
             'password' => [
                 'required',
                 'string',

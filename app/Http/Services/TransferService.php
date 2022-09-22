@@ -60,8 +60,17 @@ class TransferService
     }
 
     public static function transfer($source_user_id, $beneficiary_user_id, $amount, $narrative=''){
+        
         $ref_no = 'TRX-'. time() . '-' . $source_user_id . '|'. $beneficiary_user_id;
         $trans_id = time().$source_user_id;
+        
+        //check if it same wallet
+        if($source_user_id == $beneficiary_user_id){
+            //create transaction record
+            TransactionService::createTransactionRecord($source_user_id, $beneficiary_user_id, $ref_no, $trans_id, $narrative, false, 'same wallet transfer');
+            return [false, 'Cannot transfer into same wallet'];
+        }
+        
         $source = Wallet::where('user_id', $source_user_id)->first();
         $beneficiary = Wallet::where('user_id', $beneficiary_user_id)->first();
         if(empty($source)){

@@ -35,6 +35,6 @@ class WalletController extends Controller
             return response()->json(['status' => false, 'message' => $create_wallet[1], 'data' => false], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
         
-        return response()->json(['status' => true, 'message' => 'Wallet created successfully', 'data' => ['user_record'=> $user, 'wallet_record'=>$create_wallet[1]]], Response::HTTP_OK);
+        return response()->json(['status' => true, 'message' => 'Wallet created successfully', 'data' => ['user_record'=> $user[1], 'wallet_record'=>$create_wallet[1]]], Response::HTTP_OK);
     }
 }

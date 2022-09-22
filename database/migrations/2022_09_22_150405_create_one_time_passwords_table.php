@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('one_time_passwords', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('otp');
             $table->boolean('used')->default(false);
